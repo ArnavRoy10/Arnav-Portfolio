@@ -1,0 +1,8 @@
+.glyph {
+  width: 100%;
+  height: auto;
+  color: var(--muted-foreground);
+  transition:
+    color var(--animation-duration-slow) ease,
+    transform 1200ms var(--ease-reveal);
+}

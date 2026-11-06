@@ -1,0 +1,437 @@
+/* ---------- Shared bits ---------- */
+.label {
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1000ms var(--ease-reveal),
+    transform 1000ms var(--ease-reveal);
+}
+
+.reveal[data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7.5rem var(--gutter) 3rem;
+}
+
+.heroCanvas {
+  z-index: 0;
+}
+
+.heroTop,
+.heroBottom {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1760px;
+  margin-inline: auto;
+}
+
+.heroTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.dot {
+  position: relative;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  animation: ping 2.4s var(--ease-reveal) infinite;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.heroBottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 25rem);
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5.2vw, 6rem);
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  max-width: 18ch;
+}
+
+.headlineSkeleton {
+  width: min(36rem, 100%);
+  height: 9rem;
+}
+
+.craftBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.craft {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: 1.6rem;
+  line-height: 1.15;
+  color: var(--foreground);
+}
+
+.headline em,
+.ctaHeadline em {
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.heroSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lede {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  max-width: 36ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  position: relative;
+  width: 100%;
+  max-width: 1760px;
+  margin-inline: auto;
+  padding: clamp(4.5rem, 10vw, 9rem) var(--gutter) 0;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+/* ---------- Work list ---------- */
+.workList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workItem:nth-child(2) {
+  transition-delay: 80ms;
+}
+.workItem:nth-child(3) {
+  transition-delay: 160ms;
+}
+.workItem:nth-child(4) {
+  transition-delay: 240ms;
+}
+
+.workRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) 14rem 5rem;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.workRow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 800ms var(--ease-reveal);
+}
+
+.workRow:hover::after,
+.workRow:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.workIndex,
+.workCategory,
+.workYear {
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  transition: color var(--animation-duration-normal) ease;
+}
+
+.workYear {
+  text-align: right;
+}
+
+.workTitle {
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 4.6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: transform 800ms var(--ease-reveal);
+}
+
+.workRow:hover .workTitle,
+.workRow:focus-visible .workTitle {
+  transform: translateX(1rem);
+}
+
+.workRow:hover .workIndex,
+.workRow:focus-visible .workIndex {
+  color: var(--accent);
+}
+
+.workRow:hover .workCategory,
+.workRow:hover .workYear {
+  color: var(--foreground);
+}
+
+.moreRow {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
+}
+
+.textLink {
+  font-family: var(--font-family-monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  text-decoration: none;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-strong);
+  transition:
+    color var(--animation-duration-normal) ease,
+    border-color var(--animation-duration-normal) ease;
+}
+
+.textLink:hover,
+.textLink:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- Capabilities ---------- */
+.capabilities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.capability {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.capability:nth-child(2) {
+  transition-delay: 100ms;
+}
+.capability:nth-child(3) {
+  transition-delay: 200ms;
+}
+
+.capTitle {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3vw, 2.9rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+.capText {
+  margin: 0;
+  max-width: 38ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+/* ---------- CTA ---------- */
+.cta {
+  padding-bottom: clamp(5rem, 11vw, 10rem);
+}
+
+.ctaHeadline {
+  margin: clamp(2.5rem, 6vw, 5rem) 0 0;
+  max-width: 14ch;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 9vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  transition-delay: 120ms;
+}
+
+.mail {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.5rem, 3.2vw, 2.75rem);
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-strong);
+  transition:
+    color var(--animation-duration-normal) ease,
+    border-color var(--animation-duration-normal) ease;
+}
+
+.mail:hover,
+.mail:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .heroBottom {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+  .capabilities {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 6.5rem;
+  }
+  .heroTop .label {
+    display: none;
+  }
+  .workRow {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    row-gap: 0.5rem;
+  }
+  .workCategory {
+    grid-column: 2;
+  }
+  .workYear {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .dot::after {
+    animation: none;
+  }
+}

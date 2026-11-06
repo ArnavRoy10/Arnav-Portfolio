@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Caveat&display=swap);
+:root {
+  /* Overlay layers */
+  --z-overlay: 400;
+
+  --z-spotlight: 1000; /* Tutorial spotlights/guided help */
+
+  /* System layers */
+  --z-critical: 2000; /* Critical system notifications */
+
+  /* spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+}
+
+:root {
+  /* Content and navigation layers (used by the component kit) */
+  --z-content-low: 10;
+  --z-content: 20;
+  --z-content-high: 30;
+  --z-nav-low: 100;
+  --z-nav: 200;
+  --z-nav-sticky: 300;
+
+  /* Ground and surfaces: cool ink, one barely lighter step per layer */
+  --background: hsl(225, 16%, 3.5%);
+  --foreground: hsl(0, 0%, 100%);
+  --surface: hsl(225, 14%, 6.5%);
+  --surface-foreground: var(--foreground);
+  --sidebar: hsl(225, 14%, 5%);
+  --sidebar-foreground: hsl(0, 0%, 96%);
+  --card: hsl(225, 14%, 7%);
+  --card-foreground: var(--foreground);
+  --popup: hsl(225, 14%, 8.5%);
+  --popup-foreground: var(--foreground);
+
+  /* Brand: white is the primary, cyan is the single signal accent */
+  --primary: hsl(0, 0%, 100%);
+  --primary-foreground: hsl(225, 16%, 4%);
+  --secondary: hsl(225, 10%, 14%);
+  --secondary-foreground: hsl(0, 0%, 96%);
+  --accent: hsl(196, 100%, 72%);
+  --accent-foreground: hsl(225, 16%, 4%);
+  --muted: hsl(225, 10%, 12%);
+  --muted-foreground: hsl(220, 6%, 62%);
+
+  /* Status */
+  --success: hsl(152, 60%, 52%);
+  --success-foreground: hsl(225, 16%, 4%);
+  --error: hsl(2, 85%, 62%);
+  --error-foreground: hsl(0, 0%, 100%);
+  --warning: hsl(40, 95%, 60%);
+  --warning-foreground: hsl(225, 16%, 4%);
+  --info: hsl(206, 90%, 64%);
+  --info-foreground: hsl(225, 16%, 4%);
+  --info-hover: hsl(206, 90%, 58%);
+  --info-active: hsl(206, 90%, 52%);
+  --analytics: hsl(262, 70%, 74%);
+  --analytics-foreground: hsl(225, 16%, 4%);
+  --dashboard: hsl(196, 100%, 72%);
+  --dashboard-foreground: hsl(225, 16%, 4%);
+
+  /* Lines */
+  --border: hsl(225, 8%, 15%);
+  --border-strong: hsl(225, 8%, 26%);
+  --grid-line: hsla(0, 0%, 100%, 0.055);
+  --grid-glow: hsl(196, 100%, 72%);
+
+  /* Type */
+  --font-family-base: "Inter Tight", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-family-display: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --font-family-heading: var(--font-family-display);
+  --font-family-monospace: "JetBrains Mono", SFMono-Regular, Consolas,
+    "Liberation Mono", Menlo, monospace;
+  --font-family-cursive: "Caveat", cursive;
+
+  /* Shape: tight radii, engineered feel */
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+
+  /* Depth: almost flat, depth comes from hairlines */
+  --shadow: 0 1px 2px hsla(0, 0%, 0%, 0.4);
+  --shadow-md: 0 8px 24px -8px hsla(0, 0%, 0%, 0.55);
+  --shadow-lg: 0 24px 60px -12px hsla(0, 0%, 0%, 0.7);
+  --shadow-focus: 0 0 0 2px hsla(196, 100%, 72%, 0.35);
+
+  /* Motion */
+  --animation-duration-fast: 150ms;
+  --animation-duration-normal: 300ms;
+  --animation-duration-slow: 600ms;
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Charts */
+  --chart-color-1: hsl(196, 100%, 72%);
+  --chart-color-2: hsl(0, 0%, 100%);
+  --chart-color-3: hsl(262, 70%, 74%);
+  --chart-color-4: hsl(152, 60%, 52%);
+  --chart-color-5: hsl(40, 95%, 60%);
+}
+
+.dark {
+}
+
+/* ---------- Global reset (standalone version) ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}

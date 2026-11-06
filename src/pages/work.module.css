@@ -1,0 +1,256 @@
+.label {
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1000ms var(--ease-reveal),
+    transform 1000ms var(--ease-reveal);
+}
+
+.reveal[data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1760px;
+  margin-inline: auto;
+  padding: clamp(8rem, 16vw, 13rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+}
+
+.headline {
+  margin: 0;
+  max-width: 14ch;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 9rem);
+  line-height: 0.93;
+  letter-spacing: -0.03em;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+.lede {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.list {
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) clamp(4rem, 9vw, 8rem);
+  list-style: none;
+}
+
+.project {
+  position: relative;
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr) 16rem;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border-top: 1px solid var(--border-strong);
+}
+
+.project::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms var(--ease-reveal);
+}
+
+.project:hover::before {
+  transform: scaleX(1);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.index {
+  font-family: var(--font-family-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  transition: color var(--animation-duration-normal) ease;
+}
+
+.project:hover .index {
+  color: var(--accent);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5.4vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  transition: transform 900ms var(--ease-reveal);
+}
+
+.project:hover .title {
+  transform: translateX(0.75rem);
+}
+
+.desc {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.glyph {
+  width: 6.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.project:hover .glyph {
+  color: var(--accent);
+  transform: rotate(30deg);
+}
+
+.role {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.badge {
+  align-self: flex-start;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tagline {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.desc {
+  white-space: pre-line;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.loadingBlock {
+  height: 16rem;
+}
+
+.empty {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 4rem;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 960px) {
+  .project {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+  .side {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

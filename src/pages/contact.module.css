@@ -1,0 +1,223 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1760px;
+  min-height: calc(100dvh - 4rem);
+  margin-inline: auto;
+  padding: clamp(8rem, 16vw, 13rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+}
+
+.label {
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.headline {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(3.25rem, 9.5vw, 10.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.mail {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.75rem, 4.2vw, 3.75rem);
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  text-decoration: none;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border-strong);
+  transition:
+    color var(--animation-duration-normal) ease,
+    border-color var(--animation-duration-normal) ease;
+}
+
+.mail:hover,
+.mail:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 36rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.error {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--error);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  color: var(--error);
+}
+
+.sending {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  color: var(--muted-foreground);
+}
+
+.thanksTitle {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--foreground);
+}
+
+.social {
+  display: inline-flex;
+  gap: 0.6rem;
+  font-family: var(--font-family-monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color var(--animation-duration-normal) ease;
+}
+
+.social:hover,
+.social:focus-visible {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldLabel {
+  font-family: var(--font-family-monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--foreground);
+  font: inherit;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--shadow-focus);
+}
+
+.error {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--error);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  color: var(--error);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  color: var(--muted-foreground);
+}
+
+.thanksTitle {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--foreground);
+}
