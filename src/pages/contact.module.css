@@ -190,34 +190,22 @@
   box-shadow: var(--shadow-focus);
 }
 
-.error {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--error);
-  border-radius: var(--radius);
-  font-size: 0.9375rem;
-  color: var(--error);
+.direct {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-full);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition:
+    background-color var(--animation-duration-normal) ease,
+    color var(--animation-duration-normal) ease;
 }
 
-.honeypot {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.thanks {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  color: var(--muted-foreground);
-}
-
-.thanksTitle {
-  margin: 0;
-  font-family: var(--font-family-display);
-  font-weight: 400;
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  color: var(--foreground);
+.direct:hover,
+.direct:focus-visible {
+  background: var(--accent);
+  color: var(--accent-foreground);
 }
