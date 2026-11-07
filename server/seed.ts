@@ -14,6 +14,8 @@ export function seed(): DB {
       githubUrl: "https://github.com/",
       linkedinUrl: "https://www.linkedin.com/",
       otherUrl: "",
+      photoUrl: "",
+      whatsapp: "",
       updatedAt: now,
     },
     projects: [
