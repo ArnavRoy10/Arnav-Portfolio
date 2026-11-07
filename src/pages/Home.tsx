@@ -57,6 +57,9 @@ export default function HomePage() {
           <div className={styles.heroSide}>
             {profile && (
               <div className={styles.craftBlock}>
+                {profile.photoUrl && (
+                  <img className={styles.avatar} src={profile.photoUrl} alt={`Photo of ${profile.name}`} />
+                )}
                 <span className={styles.label}>Core craft</span>
                 <p className={styles.craft}>{profile.craft}</p>
               </div>
