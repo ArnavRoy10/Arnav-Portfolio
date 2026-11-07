@@ -203,3 +203,20 @@
     transition: none;
   }
 }
+
+.introRow {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.photo {
+  width: clamp(12rem, 22vw, 20rem);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
