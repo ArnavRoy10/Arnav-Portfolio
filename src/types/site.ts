@@ -1,6 +1,6 @@
 export type Profile = {
   name: string; tagline: string; craft: string; bio: string; availability: string;
-  contactEmail: string; githubUrl: string; linkedinUrl: string; otherUrl: string; updatedAt: string;
+  contactEmail: string; githubUrl: string; linkedinUrl: string; otherUrl: string; photoUrl: string; whatsapp: string; updatedAt: string;
 };
 export type Project = {
   id: number; title: string; details: string; tools: string; demoUrl: string; repoUrl: string;
