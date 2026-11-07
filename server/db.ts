@@ -4,7 +4,7 @@ import { seed } from "./seed.ts";
 
 export type Profile = {
   name: string; tagline: string; craft: string; bio: string; availability: string;
-  contactEmail: string; githubUrl: string; linkedinUrl: string; otherUrl: string; updatedAt: string;
+  contactEmail: string; githubUrl: string; linkedinUrl: string; otherUrl: string; photoUrl: string; whatsapp: string; updatedAt: string;
 };
 export type Project = {
   id: number; title: string; details: string; tools: string; demoUrl: string; repoUrl: string;
@@ -26,6 +26,12 @@ let lastMtime = 0;
 
 function readFromDisk(): DB {
   const parsed = JSON.parse(fs.readFileSync(FILE, "utf8")) as DB;
+  // Older data files do not have the newer profile fields yet.
+  parsed.profile = {
+    ...parsed.profile,
+    photoUrl: parsed.profile.photoUrl ?? "",
+    whatsapp: parsed.profile.whatsapp ?? "",
+  };
   lastMtime = fs.statSync(FILE).mtimeMs;
   return parsed;
 }
