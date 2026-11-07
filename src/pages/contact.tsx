@@ -103,6 +103,16 @@ export default function ContactPage() {
         </div>
 
         <div className={styles.infoCol}>
+          {profile?.whatsapp && (
+            <a
+              className={styles.direct}
+              href={`https://wa.me/${profile.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Message me directly on WhatsApp ↗
+            </a>
+          )}
           {profile?.contactEmail && (
             <a className={styles.mail} href={`mailto:${profile.contactEmail}`}>
               {profile.contactEmail}
