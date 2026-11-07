@@ -34,7 +34,12 @@ export default function AboutPage() {
         {isLoading || !profile ? (
           <Skeleton className={styles.loadingBlock} />
         ) : (
-          <h1 className={styles.statement}>{profile.bio || profile.tagline}</h1>
+          <div className={styles.introRow}>
+            <h1 className={styles.statement}>{profile.bio || profile.tagline}</h1>
+            {profile.photoUrl && (
+              <img className={styles.photo} src={profile.photoUrl} alt={`Photo of ${profile.name}`} />
+            )}
+          </div>
         )}
       </section>
 
