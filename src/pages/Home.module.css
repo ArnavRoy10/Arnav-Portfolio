@@ -435,3 +435,12 @@
     animation: none;
   }
 }
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--accent);
+}
