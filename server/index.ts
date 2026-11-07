@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import express from "express";
 import { getDb, saveDb, type Project } from "./db.ts";
+import { notifyNewMessage } from "./mailer.ts";
 import {
   checkCredentials, clearLoginFailures, credentialsConfigured, endSession, isLoggedIn,
   loginBlocked, recordLoginFailure, requireAdmin, startSession,
@@ -67,6 +68,8 @@ app.post("/api/contact", (req, res) => {
   }
   db.messages.push({ id: db.nextId.message++, name, email, message, isRead: false, createdAt: nowIso() });
   saveDb();
+  // Email it to you too (only if SMTP is set up in .env). Never blocks the visitor.
+  notifyNewMessage({ name, email, message }).catch((err) => console.error("[mail] could not send:", err));
   res.json({ ok: true });
 });
 
@@ -179,6 +182,14 @@ app.post("/api/admin/profile", requireAdmin, (req, res) => {
   const githubUrl = urlOrEmpty(d.githubUrl);
   const linkedinUrl = urlOrEmpty(d.linkedinUrl);
   const otherUrl = urlOrEmpty(d.otherUrl);
+  const photoUrl = text(d.photoUrl, 600);
+  const whatsapp = text(d.whatsapp, 30).replace(/[^\d]/g, "");
+  if (photoUrl !== "" && !/^(https?:\/\/|\/uploads\/)/i.test(photoUrl)) {
+    return void res.status(400).json({ error: "Photo must be an uploaded image or an http(s) link." });
+  }
+  if (whatsapp !== "" && (whatsapp.length < 7 || whatsapp.length > 15)) {
+    return void res.status(400).json({ error: "WhatsApp number must be 7 to 15 digits, with the country code." });
+  }
   if (!name) return void res.status(400).json({ error: "Name is required." });
   if (!tagline) return void res.status(400).json({ error: "Intro is required." });
   if (!craft) return void res.status(400).json({ error: "Core craft is required." });
@@ -190,7 +201,7 @@ app.post("/api/admin/profile", requireAdmin, (req, res) => {
   }
   const db = getDb();
   db.profile = {
-    name, tagline, craft, contactEmail, githubUrl, linkedinUrl, otherUrl,
+    name, tagline, craft, contactEmail, githubUrl, linkedinUrl, otherUrl, photoUrl, whatsapp,
     bio: text(d.bio, 3000),
     availability: text(d.availability, 80),
     updatedAt: nowIso(),
