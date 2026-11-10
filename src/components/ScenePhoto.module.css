@@ -1,0 +1,111 @@
+.root {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  width: min(70vw, 62rem);
+  height: 100dvh;
+  pointer-events: none;
+  transform-origin: top right;
+  /* Scene values: where the photo sits and how strong it is on each page. */
+  --x: 0vw;
+  --y: 0vh;
+  --s: 1;
+  --o: 1;
+  transform: translate3d(var(--x), var(--y), 0) scale(var(--s));
+  opacity: var(--o);
+  transition:
+    transform 1100ms var(--ease-curtain),
+    opacity 900ms ease;
+  animation: sceneIn 1400ms var(--ease-reveal) 200ms backwards;
+}
+
+/* Home: big, full height on the right. */
+.root[data-scene="home"] {
+  --x: 0vw;
+  --y: 0vh;
+  --s: 1;
+  --o: 1;
+}
+
+/* Work and Lab: small, tucked in the top right corner. */
+.root[data-scene="work"],
+.root[data-scene="lab"] {
+  --x: 0vw;
+  --y: 0vh;
+  --s: 0.5;
+  --o: 0.85;
+}
+
+/* About: large but faint, so it sits behind the text. */
+.root[data-scene="about"] {
+  --x: -12vw;
+  --y: 0vh;
+  --s: 0.95;
+  --o: 0.4;
+}
+
+/* Contact: moves toward the centre, faint behind the form. */
+.root[data-scene="contact"] {
+  --x: -30vw;
+  --y: 0vh;
+  --s: 0.95;
+  --o: 0.35;
+}
+
+/* Scroll-driven motion, kept on its own layer so it never lags. */
+.scroll {
+  --p: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 70% 40%;
+  transform: translate3d(calc(var(--p) * -2vw), calc(var(--p) * -5vh), 0)
+    scale(calc(1 + var(--p) * 0.1));
+  opacity: calc(1 - var(--p) * 0.45);
+  will-change: transform, opacity;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  /* Softens the edges, which helps if the photo has a background. */
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 65% 45%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 90% at 65% 45%, #000 45%, transparent 100%);
+}
+
+/* Blends the bottom of the photo into the page. */
+.fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--background) 0%, transparent 28%);
+}
+
+@keyframes sceneIn {
+  from {
+    opacity: 0;
+    transform: translate3d(6vw, 0, 0) scale(var(--s));
+  }
+}
+
+@media (max-width: 900px) {
+  .root {
+    width: 100vw;
+  }
+  .root[data-scene="home"] {
+    --o: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition-duration: 1ms;
+    animation: none;
+  }
+  .scroll {
+    transform: none;
+    opacity: 1;
+  }
+}
