@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { GridOverlay } from "./GridOverlay";
+import { Hud } from "./Hud";
+import { LoadingScreen } from "./LoadingScreen";
+import { ScenePhoto } from "./ScenePhoto";
 import { TransitionLink } from "./TransitionLink";
 import { Button } from "./Button";
 import { siteContent } from "../helpers/siteContent";
@@ -20,8 +23,8 @@ const labelFor = (pathname: string) => {
 };
 
 /**
- * Shared frame for every page: interactive grid overlay, fixed header,
- * curtain page transitions and a slim footer.
+ * Shared frame for every page: loading screen, scene photo, interactive grid
+ * overlay, fixed header, status bar, curtain page transitions and a slim footer.
  */
 export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -29,37 +32,17 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const { data: site } = useSiteData();
   const name = site?.profile?.name ?? "Arnav Roy";
   const craft = site?.profile?.craft ?? "";
-  const [phase, setPhase] = useState<Phase>("cover");
+  const [phase, setPhase] = useState<Phase>("idle");
   const [label, setLabel] = useState<string>("Portfolio");
+  const [booting, setBooting] = useState(true);
 
   const pathRef = useRef(location.pathname);
-  const busyRef = useRef(true);
+  const busyRef = useRef(false);
   const timersRef = useRef<number[]>([]);
 
   useEffect(() => {
     pathRef.current = location.pathname;
   }, [location.pathname]);
-
-  // Intro: the curtain starts closed and lifts after first paint.
-  useEffect(() => {
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduce) {
-      setPhase("idle");
-      busyRef.current = false;
-      return;
-    }
-    const a = window.setTimeout(() => setPhase("reveal"), 450);
-    const b = window.setTimeout(() => {
-      setPhase("idle");
-      busyRef.current = false;
-    }, 450 + REVEAL_MS);
-    return () => {
-      window.clearTimeout(a);
-      window.clearTimeout(b);
-    };
-  }, []);
 
   // Route changes requested by TransitionLink.
   useEffect(() => {
@@ -119,7 +102,9 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className={styles.shell}>
+    <div className={styles.shell} data-booting={booting}>
+      <LoadingScreen onReady={() => setBooting(false)} />
+      <ScenePhoto />
       <GridOverlay />
 
       <header className={styles.header}>
@@ -157,6 +142,8 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
       <main key={location.pathname} className={styles.page}>
         {children}
       </main>
+
+      <Hud />
 
       <footer className={styles.footer}>
         <span>
