@@ -133,6 +133,11 @@
   animation: pageIn 1100ms var(--ease-reveal) 380ms both;
 }
 
+/* The page waits (hidden) until the loading screen starts to leave. */
+.shell[data-booting="true"] .page {
+  animation-play-state: paused;
+}
+
 @keyframes pageIn {
   from {
     opacity: 0;
@@ -152,7 +157,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.25rem var(--gutter);
+  /* Extra room at the bottom so the status bar never covers the footer. */
+  padding: 1.25rem var(--gutter) 3.5rem;
   border-top: 1px solid var(--border);
   font-family: var(--font-family-monospace);
   font-size: 0.6875rem;
